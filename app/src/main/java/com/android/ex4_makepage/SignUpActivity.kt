@@ -29,15 +29,23 @@ class SignUpActivity : AppCompatActivity() {
 
             // 이름, 아이디, 비밀번호 값이 없을 경우엔 토스트 외 반응x
             if (userName_Data.trim().isEmpty() || userId_Data.trim().isEmpty() || userPw_Data.trim().isEmpty()) {
-                Toast.makeText(this, "입력되지 않은 정보가 있습니다", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.toast_msg_noinput), Toast.LENGTH_SHORT).show()
+                // return@setOnClickListner 해주면 뒤에 else 안쓰고 조건식만 적어도 됨
+
             } else {
                 // 다 적었으면 finish()로 SignInActivity화면으로 돌아간다
-                Toast.makeText(this, "회원가입 완료!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.toast_msg_signup), Toast.LENGTH_SHORT).show()
 
                 // 아이디와 비밀번호 SignInActivity 인텐트 구문
-                val intent = Intent(this, SignInActivity::class.java)
-                intent.putExtra("userId", userId_Data)
-                intent.putExtra("userPw", userPw_Data)
+//                val intent = Intent(this, SignInActivity::class.java)
+//                intent.putExtra("userId", userId_Data)
+//                intent.putExtra("userPw", userPw_Data)
+
+                // apply를 이용해서 putExtra앞에 intent 생략가능
+                val intent = Intent(this, SignInActivity::class.java).apply{
+                    putExtra("userId", userId_Data)
+                    putExtra("userPw", userPw_Data)
+                }
                 setResult(RESULT_OK, intent)
 
                 finish()

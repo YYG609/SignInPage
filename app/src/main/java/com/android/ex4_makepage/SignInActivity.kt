@@ -50,18 +50,17 @@ class SignInActivity : AppCompatActivity() {
             val userId_Data = user_Id.text.toString()
             val userPw_Data = user_Pw.text.toString()
 
-            // 입력받은 아이디의 키-밸류 인텐트(HomeActivity로)
-            intent.putExtra("id_DataFromSignInActivity", userId_Data)
-
             // 아이디나 비밀번호에 값이 없을 경우엔 토스트 외 반응x
             if (userId_Data.trim().isEmpty() || userPw_Data.trim().isEmpty()) {
                 // 가급적 text = getString(R.string.메세지) 사용 -> value/string에 텍스트 추가
-                Toast.makeText(this, "아이디/비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.toast_msg_idpqErr), Toast.LENGTH_SHORT).show()
 
                 // return@setOnClickListener 를 추가하면 뒤에 else를 안써도 된다
-                // 대신 로그인 성공 조건을 따로 추가
+                // 대신 로그인 성공 조건은 있어야 됨
             } else {
-                Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.toast_msg_login), Toast.LENGTH_SHORT).show()
+                // 입력받은 아이디의 키-밸류 인텐트(HomeActivity로)
+                intent.putExtra("id_DataFromSignInActivity", userId_Data)
                 startActivity(intent)
             }
         }
