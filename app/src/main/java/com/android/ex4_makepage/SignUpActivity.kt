@@ -28,11 +28,11 @@ class SignUpActivity : AppCompatActivity() {
             val userPw_Data = user_Pw.text.toString()
 
             // 이름, 아이디, 비밀번호 값이 없을 경우엔 토스트 외 반응x
-            if (userName_Data.isEmpty() || userId_Data.isEmpty() || userPw_Data.isEmpty()) {
-                Toast.makeText(applicationContext, "입력되지 않은 정보가 있습니다", Toast.LENGTH_SHORT).show()
+            if (userName_Data.trim().isEmpty() || userId_Data.trim().isEmpty() || userPw_Data.trim().isEmpty()) {
+                Toast.makeText(this, "입력되지 않은 정보가 있습니다", Toast.LENGTH_SHORT).show()
             } else {
                 // 다 적었으면 finish()로 SignInActivity화면으로 돌아간다
-                Toast.makeText(applicationContext, "회원가입 완료!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "회원가입 완료!", Toast.LENGTH_SHORT).show()
 
                 // 아이디와 비밀번호 SignInActivity 인텐트 구문
                 val intent = Intent(this, SignInActivity::class.java)
